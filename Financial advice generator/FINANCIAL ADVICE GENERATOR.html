@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Quote Generator</title>
+    <style>
+      body {
+        background: url(https://wallpaperaccess.com/full/6999309.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        font-family: "Open Sans", sans-serif;
+        color:#d6d6d4;
+      }
+      
+      .button {
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        background-color: #eceeec;
+        border: none;
+        border-radius: 5px;
+        margin: 50px auto;
+        display: block; 
+        transition: all 0.2s ease-in-out;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Financial Advice Guru</h1>
+    <p id="quote"></p>
+    <button id="generate-quote-button">Click for "FINANCIAL ADVICE"</button>
+
+    <script>
+      const quotes = [
+        "Always buy when Green and sell when Red.",
+        "If the circulating supply is low it means that the coin has value.",
+        "Always invest what you have, YOLO(You only live once) goes a long way.",
+        "FOMO(Fear of Missing out) is the best gut feeling you must listen to.",
+        "Saying -To the moon! Pumps the price.",
+        "Twitter is the place you need to monitor for the best financial advice.",
+        "Never keep your private keys in case you lose them.",
+        "Always click links fast enough to win the giveaways before anyone else.",
+        "Try to search for Vitalik or Elon Musk on Youtube in case you want them to double your ETH(Ether) you send them!",
+        "Sometimes you win BTC or ETH just by navigating through your DM's on Discord.",
+        "If a discord NFT community spams 'WAGMI'(We all going to make it), it is more likely to be successful.",
+        "Coins based on Animals or Food are the best to hold as a long-term investment.",
+        "When a billionaire shills a certain cryptocurrency it is the best time to invest on it and hold for long-term.",
+        "When a celebrity is involved in an NFT project, the ponzi scheme allegations get invalidated.",
+        "NFT's and Parasocial behavior don't go together.",
+        "Always try to immediately undercut the floor price if you bought higher, this is called Damage Control.",
+        "Always share your keys with your comrades, Our keys, our crypto!.",
+        "First thing to do when in a party is to flex your buys to everyone so you can show your investing skills.",
+        "Save your seed phrase on your computer in case you lose your physical object that contains it.",
+        "Always sign your transactions fast to execute them faster!",
+        "By checking your portfolio every once in a while, you become a better investor. Muscle Memory is key!",
+        "When an exchange or a crypto project is deploying capital in case of a crisis, you can feel SAFU. ",
+        "When in doubt, follow the trend.",
+        "Being a Diamond hand is a requirement if you plan to hold the bag for others.",
+        "Why did the man put his money in the blender? He wanted liquid assets!",
+        "Always trust an algorithmic stablecoin if you want to stay out of the market.",
+        "Long threads by influencers about an NFT project suggest its legitimacy.",
+        "If an entity is doxing it means they won't be able to scam you.",
+        "If you lose your crypto and NFTs by signing a shady transaction, make a tweet asking for a refund.",
+        "There is not such a thing as an echochamber on Twitter, tend to it for financial advice.",
+        "Always talk about investing on crypto when in a family dinner or out with friends. Help your family and friends with your wisdom.",
+        "When there is a crypto crash, try to sell fast. This is most likely the burst of the bubble.",
+        "There is no Ponzi or Pyramid schemes on crypto. It's all FUD(Fear, Uncertainty and Doubt).",
+        "You can win some giveaways without participating in them, try and claim the prize quickly.",
+        "If you happen to get a message from an African Prince, you are in luck! Try to help him and you will be rewarded.",
+        "Michael Saylor is not a madman, try to mimick his buys when you got liquidity.",
+        "Illiquid assets like some NFT's are not truly illiquid, just wait for someone to buy them.",
+        "A wise man once said 'WAGMI, NO FUD = TO THE MOON!' always remember that.",
+        "Technical analysis is always free on Social Media and Youtube, mostly 100% legit.",
+        "DYOR(Do Your Own Research) is not necessary when an influencer or celebrity does it for you.",
+        "By saying 'NO FINANCIAL ADVICE' in the end of every advice grants you credibility and makes you ethical.",
+        "Most Cryptocurrency projects don't care about making money but to bring freedom to the people.",
+        "If you want to mint an NFT project at a time where you are unable to do so, give your seed phrase to someone who can do it for you.",
+        "Always keep your crypto on centralized exchanges, so you won't be able to lose your keys.",
+        "If a centralized exchange files bankcruptcy, try to send them an e-mail asking for your assets or tweet about it by tagging them.",
+        "Inflation grants you more money to invest with. You are in luck if you happen to live through one!",
+        "Shiba Inu will reach 1$, just wait for it and hodl.",
+        "Metallica can send you 2 BTC(Bitcoin) if you send them 1 BTC first.",
+        "NFTs are 99% legit, feel free to invest.",
+        "By being a liquidity exit to other investors makes you an altruist.",
+        "Holding the bag makes your investing 'arm muscles' stronger.",
+        "By typing Crypto Investor/Entrepreneur to your bio profile grants you higher chance for people to take you seriously.",
+        "If an influencer/entrepreneur claims that he won a lot by gambling on a specific site, you should hop on too.",
+        "When someone is FUDDING your bag or a project that you intend to invest on, is usually a heretic! BURN THEM!",
+        "Chances of a real hot chick DM'ing(Direct Message)you on Twitter just by being an investor/entrepreneur is high! You are a player now.",
+        "WEB3 is a real thing, DYOR(DO YOUR OWN SEARCH). Wait for WEB4 though.",
+        "By being a paperhand makes you a traitor in the eyes of a bag holder, be a good friend and let yourself be his/her exit liquidity.",
+        "Influencers tend to like you when you are a Diamond-Hand. You show them!",
+        "WEB3 developer is a real thing.",
+        "If a project that you invested in, doesn't perform well. Post a video of yourself on Twitter asking -Can the devs(developers) do something?!",
+        "Discord chat grinding is a thing for NFT projects that grants them credibility.",
+        "Most NFT project founders care for their community. You are in safe hands.",
+        "By saying 'gm'(good morning) on Twitter and Discord more than once each day makes you a social member of the community.",
+        "By shilling or defending Elon Musk on Twitter makes you a better investor/entrepreneur/influencer.",
+        "Supporting and defending Elon Musk on Twitter can make you successful like him.",
+        ];
+      
+      function getRandomQuote() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        return quotes[randomIndex];
+      }
+      
+      const generateQuoteButton = document.getElementById("generate-quote-button");
+      generateQuoteButton.addEventListener("click", function() {
+        const quoteParagraph = document.getElementById("quote");
+        quoteParagraph.textContent = getRandomQuote();
+      });
+    </script>
+  </body>
+</html>
+
